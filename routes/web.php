@@ -14,4 +14,10 @@ Route::post('logout',[LoginController::class,'logout'])->name('logout');
 
 Route::middleware('auth')->group(function(){
     Route::get('dashboard',[BookController::class,'index'])->name('dashboard');
+    Route::get('books/create',[BookController::class,'create'])->name('books.create');
+    Route::post('books',[BookController::class,'store'])->name('books.store');
+    Route::get('books/{book}/edit',[BookController::class,'edit'])->name('books.edit');
+    Route::put('books/{id}',[BookController::class,'update'])->name('books.update');
+    Route::get('books-list',[BookController::class,'booksIndex'])->name('books.show');
+
 });
