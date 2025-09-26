@@ -95,4 +95,32 @@ class BookController extends Controller
             'books'=>$books
         ]);
     }
+
+    public function show(Book $book)
+    {
+        return view('books.view')->with([
+            'book'=>$book
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $books = Book::where('title', 'like', "%{$query}%")
+                     ->orWhere('isbn', 'like', "%{$query}%")
+                     ->orWhereHas('author', function ($q) use ($query) {
+                         $q->where('name', 'like', "%{$query}%");
+                     })
+                     ->orWhereHas('category', function ($q) use ($query) {
+                         $q->where('name', 'like', "%{$query}%");
+                     })
+                     ->with(['author', 'category'])
+                     ->get();
+
+        return view('books.index')->with([
+            'books' => $books,
+            'searchQuery' => $query
+        ]);
+    }
 }

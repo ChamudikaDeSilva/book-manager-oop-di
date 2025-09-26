@@ -13,7 +13,7 @@
 
     <!-- Example Dashboard Actions -->
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-        <a href="#"
+        <a href="{{ route('books.index') }}"
            class="p-6 rounded-lg bg-gray-50 border hover:shadow-md transition transform hover:scale-[1.02]">
             <h3 class="text-xl font-semibold mb-2">📚 Books</h3>
             <p class="text-sm text-gray-600">View and manage your book collection.</p>

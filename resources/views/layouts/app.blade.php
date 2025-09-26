@@ -5,9 +5,11 @@
     <title>@yield('title', 'My App')</title>
     @vite('resources/css/app.css')
     <script src="//unpkg.com/alpinejs" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 
 </head>
-<div
+{{-- <div
     x-data="{ show: {{ session('success') || session('error') ? 'true' : 'false' }} }"
     x-show="show"
     x-transition
@@ -60,17 +62,19 @@
 </div>
 
     </div>
-</div>
+</div> --}}
 
 <body class="min-h-screen bg-gray-100 text-gray-900 flex flex-col">
 
     <!-- Navbar -->
     <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold tracking-wide">🚀 My Dashboard</h1>
+        <h1 class="text-2xl font-bold tracking-wide">
+            <i class="fa-solid fa-book"></i> Book Management System
+        </h1>
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit"
-                class="px-4 py-2 rounded-lg bg-cyan-600 text-black
+                class="px-4 py-2 rounded-lg bg-gray-400 text-black
                        hover:bg-gray-200 transition">
                 Logout
             </button>
