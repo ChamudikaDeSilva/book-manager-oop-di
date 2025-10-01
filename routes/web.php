@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function(){
     Route::get('books/{book}/edit',[BookController::class,'edit'])->name('books.edit');
     Route::put('books/{book}',[BookController::class,'update'])->name('books.update');
     Route::get('books-list',[BookController::class,'booksIndex'])->name('books.index');
-    Route::delete('books/{book}',[BookController::class,'destroy'])->name('books.destroy');
+    Route::delete('books-delete/{book}',[BookController::class,'destroy'])->name('books.destroy');
     Route::get('book/view/{book}',[BookController::class,'show'])->name('books.show');
 
 });

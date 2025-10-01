@@ -27,15 +27,6 @@ class BookController extends Controller
         ]);
     }
 
-    // public function store(BookRequest $request)
-    // {
-    //     $book=Book::create($request->validated());
-
-    //     return redirect()->route('books.edit', $book->id)
-    //         ->with('success','Book created successfully.');
-
-    // }
-
     public function edit(Book $book)
     {
         $categories = Category::all();
@@ -63,16 +54,22 @@ class BookController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
+
+
         try {
-            //dd($request->all());
-            $book->update($request->validated());
+            $validated = $request->validated();
+
+
+            $book->update($validated);
 
             return redirect()->route('books.edit', $book->id)
                             ->with('success', 'Book updated successfully.');
         } catch (\Exception $e) {
+            dd($e->getMessage()); // show actual error
             return back()->with('error', 'Update failed. Please try again.');
         }
     }
+
 
     public function destroy(Book $book)
     {

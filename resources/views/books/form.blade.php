@@ -9,16 +9,18 @@
     </h2>
 
     <form
-        action="{{ isset($book) ? route('books.update', $book->id) : route('books.store') }}"
+        action="{{ isset($book) ? url('books/'.$book->id) : route('books.store') }}"
         method="POST"
         class="space-y-6"
     >
         @csrf
+
+        {{-- Use PUT only when editing --}}
         @if(isset($book))
             @method('PUT')
         @endif
 
-        <!-- Book Name -->
+        {{-- Book Name --}}
         <div>
             <label class="block text-gray-700 font-medium">Book Name</label>
             <input type="text"
@@ -28,7 +30,7 @@
                    required>
         </div>
 
-        <!-- Category Dropdown -->
+        {{-- Category Dropdown --}}
         <div>
             <label class="block text-gray-700 font-medium">Category</label>
             <select name="category_id"
@@ -43,7 +45,7 @@
             </select>
         </div>
 
-        <!-- Author Dropdown -->
+        {{-- Author Dropdown --}}
         <div>
             <label class="block text-gray-700 font-medium">Author</label>
             <select name="author_id"
@@ -58,7 +60,7 @@
             </select>
         </div>
 
-        <!-- Published Date -->
+        {{-- Published Date --}}
         <div>
             <label class="block text-gray-700 font-medium">Published Date</label>
             <input type="date"
@@ -67,7 +69,7 @@
                    class="w-full mt-1 border rounded-lg p-2 focus:ring focus:ring-blue-300">
         </div>
 
-        <!-- Description -->
+        {{-- Description --}}
         <div>
             <label class="block text-gray-700 font-medium">Description</label>
             <textarea name="description"
@@ -75,9 +77,9 @@
                       class="w-full mt-1 border rounded-lg p-2 focus:ring focus:ring-blue-300">{{ old('description', $book->description ?? '') }}</textarea>
         </div>
 
-        <!-- Submit -->
+        {{-- Submit Buttons --}}
         <div class="flex justify-end space-x-4">
-            <a href="{{ route('dashboard') }}"
+            <a href="{{ route('books.index') }}"
                class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
                 Cancel
             </a>
